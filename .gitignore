@@ -1,0 +1,60 @@
+*.pth
+*.pdparams
+*.pdopt
+*.states
+*.pt
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.ipynb_checkpoints/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# PaddleOCR related
+PaddleOCR/inference/
+PaddleOCR/inference_results/
+PaddleOCR/output/
+PaddleOCR/docs/
+PaddleOCR/doc/
+PaddleOCR/train_data/
+PaddleOCR/log/
+PaddleOCR/*.DS_Store
+PaddleOCR/*.vs
+PaddleOCR/*.user
+PaddleOCR/*~
+PaddleOCR/*.vscode
+PaddleOCR/*.idea
+PaddleOCR/pretrain_models/
+PaddleOCR/*.log
+PaddleOCR/.clang-format
+PaddleOCR/.clang_format.hook
+PaddleOCR/build/
+PaddleOCR/dist/
+PaddleOCR/paddleocr.egg-info/
+PaddleOCR/deploy/android_demo/app/OpenCV/
+PaddleOCR/deploy/android_demo/app/PaddleLite/
+PaddleOCR/deploy/android_demo/app/.cxx/
+PaddleOCR/deploy/android_demo/app/cache/
+PaddleOCR/test_tipc/web/models/
+PaddleOCR/test_tipc/web/node_modules/
+
+
+# OpenOCR
+OpenOCR/output
+OpenOCR/igtr_u14m_pt_model_log
+
+# CCD
+CCD/CCD_Ha/tensorboard
+CCD/CCD_Ha/pretrained_model
+CCD/CCD_Ha/Dino/pretrained_model
+CCD/CCD_Ha/Dino/training_eval_ViCalligraphy/
+
+
+CCD/CCDstroke/tensorboard
+CCD/CCDstroke/pretrained_model
+CCD/CCDstroke/Dino/pretrained_model
+CCD/CCDstroke/Dino/training_eval_ViCalligraphy/
+
