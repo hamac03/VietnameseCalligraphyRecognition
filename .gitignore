@@ -58,3 +58,5 @@ CCD/CCDstroke/pretrained_model
 CCD/CCDstroke/Dino/pretrained_model
 CCD/CCDstroke/Dino/training_eval_ViCalligraphy/
 
+vietocr/weights/transformerocr.pth
+
