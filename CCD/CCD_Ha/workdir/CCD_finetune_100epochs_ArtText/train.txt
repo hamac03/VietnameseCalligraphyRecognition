@@ -1,0 +1,2462 @@
+ModelConfig(
+	(0): arch = vit_small
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = False
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = False
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 48
+	(21): dataset_test_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(22): dataset_train_batch_size = 48
+	(23): dataset_train_roots = ['../../data/ATTW/artonly/lmdb/train_filtered/']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 48
+	(28): dataset_valid_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 25
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_100epochs_ArtText
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_100epochs_ArtText
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = ../../../data/CCD/Small_ARD_checkpoint.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 8
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 100
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:../../data/ATTW/artonly/lmdb/train_filtered/-->12404'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+each epoch iteration: 259
+Read vision model from ../../../data/CCD/Small_ARD_checkpoint.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 384, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=384, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 36284897
+
+Start training from scratch.
+iteration:0--> train loss:5.547771453857422
+eval model
+iteration:100--> train loss:3.6187214851379395
+iteration:200--> train loss:1.263013243675232
+iteration:300--> train loss:1.0114012956619263
+iteration:400--> train loss:0.9340818524360657
+iteration:500--> train loss:0.8949110507965088
+iteration:600--> train loss:0.8294506669044495
+iteration:700--> train loss:0.7704518437385559
+iteration:800--> train loss:0.7556751370429993
+iteration:900--> train loss:0.6967747807502747
+iteration:1000--> train loss:0.6919138431549072
+iteration:1100--> train loss:0.6653311252593994
+iteration:1200--> train loss:0.6395015716552734
+iteration:1300--> train loss:0.678912341594696
+iteration:1400--> train loss:0.6268415451049805
+iteration:1500--> train loss:0.6208236813545227
+iteration:1600--> train loss:0.6003779172897339
+iteration:1700--> train loss:0.5986700057983398
+iteration:1800--> train loss:0.6152119040489197
+iteration:1900--> train loss:0.5698477625846863
+iteration:2000--> train loss:0.5642275214195251
+iteration:2100--> train loss:0.5863227844238281
+iteration:2200--> train loss:0.546562135219574
+iteration:2300--> train loss:0.5570481419563293
+iteration:2400--> train loss:0.48745250701904297
+iteration:2500--> train loss:0.5434209704399109
+iteration:2600--> train loss:0.5401860475540161
+iteration:2700--> train loss:0.47889670729637146
+iteration:2800--> train loss:0.5310777425765991
+iteration:2900--> train loss:0.4948123097419739
+iteration:3000--> train loss:0.47610121965408325
+iteration:3100--> train loss:0.49529826641082764
+iteration:3200--> train loss:0.44798606634140015
+iteration:3300--> train loss:0.4811852276325226
+iteration:3400--> train loss:0.4695360064506531
+iteration:3500--> train loss:0.4576292037963867
+iteration:3600--> train loss:0.4806496798992157
+iteration:3700--> train loss:0.4506799876689911
+iteration:3800--> train loss:0.439335435628891
+iteration:3900--> train loss:0.4597271680831909
+iteration:4000--> train loss:0.42696285247802734
+iteration:4100--> train loss:0.4364980459213257
+iteration:4200--> train loss:0.42203187942504883
+iteration:4300--> train loss:0.43178924918174744
+iteration:4400--> train loss:0.45477911829948425
+iteration:4500--> train loss:0.41122546792030334
+iteration:4600--> train loss:0.40756669640541077
+iteration:4700--> train loss:0.4297183156013489
+iteration:4800--> train loss:0.4045426547527313
+iteration:4900--> train loss:0.4064886271953583
+iteration:5000--> train loss:0.39201605319976807
+eval model
+iteration:5100--> train loss:0.41765519976615906
+iteration:5200--> train loss:0.3940277099609375
+iteration:5300--> train loss:0.36692285537719727
+iteration:5400--> train loss:0.39506614208221436
+iteration:5500--> train loss:0.380180686712265
+iteration:5600--> train loss:0.3677023947238922
+iteration:5700--> train loss:0.399587482213974
+iteration:5800--> train loss:0.3563006818294525
+iteration:5900--> train loss:0.37348493933677673
+iteration:6000--> train loss:0.3525652587413788
+iteration:6100--> train loss:0.3648237884044647
+iteration:6200--> train loss:0.3697096109390259
+iteration:6300--> train loss:0.3504939079284668
+iteration:6400--> train loss:0.3609057068824768
+iteration:6500--> train loss:0.3409726917743683
+iteration:6600--> train loss:0.3249671757221222
+iteration:6700--> train loss:0.3542400598526001
+iteration:6800--> train loss:0.345059871673584
+iteration:6900--> train loss:0.33048126101493835
+iteration:7000--> train loss:0.3439416289329529
+iteration:7100--> train loss:0.312034547328949
+iteration:7200--> train loss:0.3311792314052582
+iteration:7300--> train loss:0.31833091378211975
+iteration:7400--> train loss:0.3162468373775482
+iteration:7500--> train loss:0.3244566023349762
+iteration:7600--> train loss:0.2972078025341034
+iteration:7700--> train loss:0.32311296463012695
+iteration:7800--> train loss:0.3271155059337616
+iteration:7900--> train loss:0.28018248081207275
+iteration:8000--> train loss:0.32704734802246094
+iteration:8100--> train loss:0.30639222264289856
+iteration:8200--> train loss:0.28828564286231995
+iteration:8300--> train loss:0.2969597280025482
+iteration:8400--> train loss:0.28232404589653015
+iteration:8500--> train loss:0.29402869939804077
+iteration:8600--> train loss:0.3019576668739319
+iteration:8700--> train loss:0.27240490913391113
+iteration:8800--> train loss:0.31467384099960327
+iteration:8900--> train loss:0.3018248975276947
+iteration:9000--> train loss:0.2913217544555664
+iteration:9100--> train loss:0.271867960691452
+iteration:9200--> train loss:0.28359904885292053
+iteration:9300--> train loss:0.281219482421875
+iteration:9400--> train loss:0.2601400911808014
+iteration:9500--> train loss:0.2552300691604614
+iteration:9600--> train loss:0.2636204659938812
+iteration:9700--> train loss:0.24773797392845154
+iteration:9800--> train loss:0.2567767798900604
+iteration:9900--> train loss:0.2657383680343628
+iteration:10000--> train loss:0.26449787616729736
+eval model
+iteration:10100--> train loss:0.25035953521728516
+ModelConfig(
+	(0): arch = vit_small
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = False
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = False
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 48
+	(21): dataset_test_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(22): dataset_train_batch_size = 48
+	(23): dataset_train_roots = ['../../data/ATTW/artonly/lmdb/train_filtered/']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 48
+	(28): dataset_valid_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 25
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_100epochs_ArtText
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_100epochs_ArtText
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = saved_models/CCD_finetune_100epochs_ArtText/10000.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 8
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 100
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:../../data/ATTW/artonly/lmdb/train_filtered/-->12404'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+each epoch iteration: 259
+Read vision model from saved_models/CCD_finetune_100epochs_ArtText/10000.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 384, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=384, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 36284897
+
+Start training from scratch.
+ModelConfig(
+	(0): arch = vit_small
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = False
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = False
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 48
+	(21): dataset_test_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(22): dataset_train_batch_size = 48
+	(23): dataset_train_roots = ['../../data/ATTW/artonly/lmdb/train_filtered/']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 48
+	(28): dataset_valid_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 25
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_100epochs_ArtText
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_100epochs_ArtText
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = saved_models/CCD_finetune_100epochs_ArtText/10000.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 8
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 100
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:../../data/ATTW/artonly/lmdb/train_filtered/-->12404'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+each epoch iteration: 259
+Read vision model from saved_models/CCD_finetune_100epochs_ArtText/10000.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 384, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=384, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 36284897
+
+Start training from scratch.
+iteration:0--> train loss:5.556716442108154
+eval model
+iteration:100--> train loss:3.7677009105682373
+iteration:200--> train loss:1.4514051675796509
+ModelConfig(
+	(0): arch = vit_small
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = False
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = False
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 48
+	(21): dataset_test_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(22): dataset_train_batch_size = 48
+	(23): dataset_train_roots = ['../../data/ATTW/artonly/lmdb/train_filtered/']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 48
+	(28): dataset_valid_roots = ['../../data/ATTW/artonly/lmdb/test_filtered/']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 25
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_100epochs_ArtText
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_100epochs_ArtText
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = saved_models/CCD_finetune_100epochs_ArtText/10000.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 8
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 100
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:../../data/ATTW/artonly/lmdb/train_filtered/-->12404'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+'current_dataset_path:../../data/ATTW/artonly/lmdb/test_filtered/-->4130'
+
+each epoch iteration: 259
+Read vision model from saved_models/CCD_finetune_100epochs_ArtText/10000.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 384, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((384,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=384, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 36284897
+
+Start training from scratch.
+iteration:0--> train loss:0.15355978906154633
+eval model
+iteration:100--> train loss:0.20845170319080353
+iteration:200--> train loss:0.21789391338825226
+iteration:300--> train loss:0.3006077706813812
+iteration:400--> train loss:0.3807448148727417
+iteration:500--> train loss:0.40155044198036194
+iteration:600--> train loss:0.35366255044937134
+iteration:700--> train loss:0.37710919976234436
+iteration:800--> train loss:0.3838622272014618
+iteration:900--> train loss:0.3502112627029419
+iteration:1000--> train loss:0.35327357053756714
+iteration:1100--> train loss:0.34056487679481506
+iteration:1200--> train loss:0.3456590473651886
+iteration:1300--> train loss:0.3688147962093353
+iteration:1400--> train loss:0.3357495069503784
+iteration:1500--> train loss:0.3573606312274933
+iteration:1600--> train loss:0.35001376271247864
+iteration:1700--> train loss:0.3283252716064453
+iteration:1800--> train loss:0.3511956036090851
+iteration:1900--> train loss:0.32222315669059753
+iteration:2000--> train loss:0.3479001820087433
+iteration:2100--> train loss:0.3303301930427551
+iteration:2200--> train loss:0.3044957220554352
+iteration:2300--> train loss:0.34709444642066956
+iteration:2400--> train loss:0.33322691917419434
+iteration:2500--> train loss:0.3365745544433594
+iteration:2600--> train loss:0.34461110830307007
+iteration:2700--> train loss:0.31939539313316345
+iteration:2800--> train loss:0.3304291367530823
+iteration:2900--> train loss:0.3250679671764374
+iteration:3000--> train loss:0.31905031204223633
+iteration:3100--> train loss:0.3350008726119995
+iteration:3200--> train loss:0.3166787922382355
+iteration:3300--> train loss:0.3138938248157501
+iteration:3400--> train loss:0.3379564881324768
+iteration:3500--> train loss:0.2931951582431793
+iteration:3600--> train loss:0.3162003755569458
+iteration:3700--> train loss:0.31349071860313416
+iteration:3800--> train loss:0.31581470370292664
+iteration:3900--> train loss:0.3136039972305298
+iteration:4000--> train loss:0.3086329698562622
+iteration:4100--> train loss:0.31823423504829407
+iteration:4200--> train loss:0.3222464919090271
+iteration:4300--> train loss:0.3121935725212097
+iteration:4400--> train loss:0.3263401687145233
+iteration:4500--> train loss:0.29242780804634094
+iteration:4600--> train loss:0.2955668866634369
+iteration:4700--> train loss:0.292233407497406
+iteration:4800--> train loss:0.28055813908576965
+iteration:4900--> train loss:0.3036890923976898
+iteration:5000--> train loss:0.27537837624549866
+eval model
+iteration:5100--> train loss:0.2872524559497833
+iteration:5200--> train loss:0.2811027765274048
+iteration:5300--> train loss:0.2806363105773926
+iteration:5400--> train loss:0.2872089445590973
+iteration:5500--> train loss:0.26904919743537903
+iteration:5600--> train loss:0.27343058586120605
+iteration:5700--> train loss:0.3027210533618927
+iteration:5800--> train loss:0.2749458849430084
+iteration:5900--> train loss:0.30544355511665344
+iteration:6000--> train loss:0.2688664495944977
+iteration:6100--> train loss:0.26964426040649414
+iteration:6200--> train loss:0.2872909605503082
+iteration:6300--> train loss:0.2467602640390396
+iteration:6400--> train loss:0.27827346324920654
+iteration:6500--> train loss:0.27352046966552734
+iteration:6600--> train loss:0.2565428614616394
+iteration:6700--> train loss:0.2699166536331177
+iteration:6800--> train loss:0.2345004826784134
+iteration:6900--> train loss:0.2618199586868286
+iteration:7000--> train loss:0.2582619786262512
+iteration:7100--> train loss:0.2542763352394104
+iteration:7200--> train loss:0.2763175070285797
+iteration:7300--> train loss:0.24727214872837067
+iteration:7400--> train loss:0.23841476440429688
+iteration:7500--> train loss:0.2550150752067566
+iteration:7600--> train loss:0.24394840002059937
+iteration:7700--> train loss:0.2484762966632843
+iteration:7800--> train loss:0.2390008419752121
+iteration:7900--> train loss:0.23110215365886688
+iteration:8000--> train loss:0.24694594740867615
+iteration:8100--> train loss:0.2468368262052536
+iteration:8200--> train loss:0.23461751639842987
+iteration:8300--> train loss:0.24516890943050385
+iteration:8400--> train loss:0.2165224254131317
+iteration:8500--> train loss:0.23854464292526245
+iteration:8600--> train loss:0.2306395024061203
+iteration:8700--> train loss:0.2174498289823532
+iteration:8800--> train loss:0.2459460198879242
+iteration:8900--> train loss:0.20583994686603546
+iteration:9000--> train loss:0.21617808938026428
+iteration:9100--> train loss:0.21218955516815186
+iteration:9200--> train loss:0.22020575404167175
+iteration:9300--> train loss:0.23022373020648956
+iteration:9400--> train loss:0.2120380997657776
+iteration:9500--> train loss:0.2078630030155182
+iteration:9600--> train loss:0.21530665457248688
+iteration:9700--> train loss:0.22018319368362427
+iteration:9800--> train loss:0.22296884655952454
+iteration:9900--> train loss:0.21134112775325775
+iteration:10000--> train loss:0.2003716081380844
+eval model
+iteration:10100--> train loss:0.21746839582920074
+iteration:10200--> train loss:0.18437205255031586
+iteration:10300--> train loss:0.20365457236766815
+iteration:10400--> train loss:0.19161587953567505
+iteration:10500--> train loss:0.19628342986106873
+iteration:10600--> train loss:0.19722416996955872
+iteration:10700--> train loss:0.19223642349243164
+iteration:10800--> train loss:0.20600706338882446
+iteration:10900--> train loss:0.19203223288059235
+iteration:11000--> train loss:0.2011360377073288
+iteration:11100--> train loss:0.18678618967533112
+iteration:11200--> train loss:0.17973367869853973
+iteration:11300--> train loss:0.17997005581855774
+iteration:11400--> train loss:0.19074632227420807
+iteration:11500--> train loss:0.1751469224691391
+iteration:11600--> train loss:0.1756073385477066
+iteration:11700--> train loss:0.17376545071601868
+iteration:11800--> train loss:0.1748986393213272
+iteration:11900--> train loss:0.19332517683506012
+iteration:12000--> train loss:0.16588592529296875
+iteration:12100--> train loss:0.17372918128967285
+iteration:12200--> train loss:0.1619541496038437
+iteration:12300--> train loss:0.17131420969963074
+iteration:12400--> train loss:0.17264516651630402
+iteration:12500--> train loss:0.15054133534431458
+iteration:12600--> train loss:0.15751180052757263
+iteration:12700--> train loss:0.16310763359069824
+iteration:12800--> train loss:0.14943380653858185
+iteration:12900--> train loss:0.15890148282051086
+iteration:13000--> train loss:0.14834487438201904
+iteration:13100--> train loss:0.15538419783115387
+iteration:13200--> train loss:0.1618303507566452
+iteration:13300--> train loss:0.14573341608047485
+iteration:13400--> train loss:0.14755484461784363
+iteration:13500--> train loss:0.15746241807937622
+iteration:13600--> train loss:0.13498690724372864
+iteration:13700--> train loss:0.1467507928609848
+iteration:13800--> train loss:0.14244256913661957
+iteration:13900--> train loss:0.12994632124900818
+iteration:14000--> train loss:0.14030836522579193
+iteration:14100--> train loss:0.1385389268398285
+iteration:14200--> train loss:0.13686533272266388
+iteration:14300--> train loss:0.14018559455871582
+iteration:14400--> train loss:0.14711244404315948
+iteration:14500--> train loss:0.12955403327941895
+iteration:14600--> train loss:0.13174884021282196
+iteration:14700--> train loss:0.14000503718852997
+iteration:14800--> train loss:0.12885929644107819
+iteration:14900--> train loss:0.13007424771785736
+iteration:15000--> train loss:0.13292056322097778
+eval model
+iteration:15100--> train loss:0.10967379063367844
+iteration:15200--> train loss:0.1300588697195053
+iteration:15300--> train loss:0.12458101660013199
+iteration:15400--> train loss:0.12008535116910934
+iteration:15500--> train loss:0.12291207164525986
+iteration:15600--> train loss:0.120649553835392
+iteration:15700--> train loss:0.12106611579656601
+iteration:15800--> train loss:0.12307120859622955
+iteration:15900--> train loss:0.11526064574718475
+iteration:16000--> train loss:0.12729401886463165
+iteration:16100--> train loss:0.09969493746757507
+iteration:16200--> train loss:0.11190056800842285
+iteration:16300--> train loss:0.10615823417901993
+iteration:16400--> train loss:0.10726192593574524
+iteration:16500--> train loss:0.1151350885629654
+iteration:16600--> train loss:0.11358266323804855
+iteration:16700--> train loss:0.1027912124991417
+iteration:16800--> train loss:0.10305745899677277
+iteration:16900--> train loss:0.09572938084602356
+iteration:17000--> train loss:0.1033555194735527
+iteration:17100--> train loss:0.10145464539527893
+iteration:17200--> train loss:0.09569278359413147
+iteration:17300--> train loss:0.09005347639322281
+iteration:17400--> train loss:0.10001744329929352
+iteration:17500--> train loss:0.08730431646108627
+iteration:17600--> train loss:0.10276452451944351
+iteration:17700--> train loss:0.10088494420051575
+iteration:17800--> train loss:0.09697127342224121
+iteration:17900--> train loss:0.09464417397975922
+iteration:18000--> train loss:0.09403251111507416
+iteration:18100--> train loss:0.09086301922798157
+iteration:18200--> train loss:0.09155421704053879
+iteration:18300--> train loss:0.09008728712797165
+iteration:18400--> train loss:0.08812020719051361
+iteration:18500--> train loss:0.0884733647108078
+iteration:18600--> train loss:0.09040878713130951
+iteration:18700--> train loss:0.08529169112443924
+iteration:18800--> train loss:0.09006050229072571
+iteration:18900--> train loss:0.08430986851453781
+iteration:19000--> train loss:0.08592230826616287
+iteration:19100--> train loss:0.07895948737859726
+iteration:19200--> train loss:0.08305863291025162
+iteration:19300--> train loss:0.08005201071500778
+iteration:19400--> train loss:0.07825838774442673
+iteration:19500--> train loss:0.07666325569152832
+iteration:19600--> train loss:0.07914470136165619
+iteration:19700--> train loss:0.0784139409661293
+iteration:19800--> train loss:0.07048627734184265
+iteration:19900--> train loss:0.07899582386016846
+iteration:20000--> train loss:0.07535529136657715
+eval model
+iteration:20100--> train loss:0.07412862777709961
+iteration:20200--> train loss:0.0747765526175499
+iteration:20300--> train loss:0.07532111555337906
+iteration:20400--> train loss:0.06865786761045456
+iteration:20500--> train loss:0.06902141124010086
+iteration:20600--> train loss:0.06884454935789108
+iteration:20700--> train loss:0.07336534559726715
+iteration:20800--> train loss:0.07356142997741699
+iteration:20900--> train loss:0.07581397145986557
+iteration:21000--> train loss:0.06868311017751694
+iteration:21100--> train loss:0.06428814679384232
+iteration:21200--> train loss:0.06186966598033905
+iteration:21300--> train loss:0.06312267482280731
+iteration:21400--> train loss:0.06394590437412262
+iteration:21500--> train loss:0.0649506151676178
+iteration:21600--> train loss:0.06514469534158707
+iteration:21700--> train loss:0.06330598145723343
+iteration:21800--> train loss:0.06797820329666138
+iteration:21900--> train loss:0.06459032744169235
+iteration:22000--> train loss:0.06258034706115723
+iteration:22100--> train loss:0.06594628840684891
+iteration:22200--> train loss:0.06330438703298569
+iteration:22300--> train loss:0.0619090311229229
+iteration:22400--> train loss:0.0657678097486496
+iteration:22500--> train loss:0.061132654547691345
+iteration:22600--> train loss:0.058092258870601654
+iteration:22700--> train loss:0.05702148377895355
+iteration:22800--> train loss:0.0611715130507946
+iteration:22900--> train loss:0.058259762823581696
+iteration:23000--> train loss:0.055351622402668
+iteration:23100--> train loss:0.059316571801900864
+iteration:23200--> train loss:0.05745503678917885
+iteration:23300--> train loss:0.06113377586007118
+iteration:23400--> train loss:0.05681072920560837
+iteration:23500--> train loss:0.05703331157565117
+iteration:23600--> train loss:0.052038948982954025
+iteration:23700--> train loss:0.0640755146741867
+iteration:23800--> train loss:0.05785120278596878
+iteration:23900--> train loss:0.057204265147447586
+iteration:24000--> train loss:0.06001054495573044
+iteration:24100--> train loss:0.05386198312044144
+iteration:24200--> train loss:0.05371154099702835
+iteration:24300--> train loss:0.060714296996593475
+iteration:24400--> train loss:0.05657779425382614
+iteration:24500--> train loss:0.06282563507556915
+iteration:24600--> train loss:0.059422578662633896
+iteration:24700--> train loss:0.053905948996543884
+iteration:24800--> train loss:0.05698613449931145
+iteration:24900--> train loss:0.0555306151509285
+iteration:25000--> train loss:0.05547480285167694
+eval model
+iteration:25100--> train loss:0.05838906019926071
+iteration:25200--> train loss:0.054671477526426315
+iteration:25300--> train loss:0.05902891606092453
+iteration:25400--> train loss:0.051920849829912186
+iteration:25500--> train loss:0.05939818173646927
+iteration:25600--> train loss:0.053025197237730026
+iteration:25700--> train loss:0.054129213094711304
+iteration:25800--> train loss:0.053040776401758194

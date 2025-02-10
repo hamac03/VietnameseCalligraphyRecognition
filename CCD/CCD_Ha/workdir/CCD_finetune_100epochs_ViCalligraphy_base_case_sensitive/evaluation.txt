@@ -1,0 +1,30 @@
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8558558558558559 --> CER: 0.09152890632296629
+total_accuracy: 0.8558558558558559
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8558558558558559 --> CER: 0.09152890632296629
+total_accuracy: 0.8558558558558559
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8021235521235521 --> CER: 0.08452414308396372
+total_accuracy: 0.8021235521235521
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8706563706563707 --> CER: 0.08452414308396372
+total_accuracy: 0.8706563706563707
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.879021879021879 --> CER: 0.08144204725880266
+total_accuracy: 0.879021879021879
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8095238095238095 --> CER: 0.08144204725880266
+total_accuracy: 0.8095238095238095
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8841698841698842 --> CER: 0.07882693564957499
+total_accuracy: 0.8841698841698842
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8146718146718147 --> CER: 0.07882693564957499
+total_accuracy: 0.8146718146718147
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.7915057915057915 --> CER: 0.09152890632296629
+total_accuracy: 0.7915057915057915

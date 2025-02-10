@@ -1,0 +1,4 @@
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8558558558558559 --> CER: 0.09152890632296629
+total_accuracy: 0.8558558558558559
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8558558558558559 --> CER: 0.09152890632296629
+total_accuracy: 0.8558558558558559

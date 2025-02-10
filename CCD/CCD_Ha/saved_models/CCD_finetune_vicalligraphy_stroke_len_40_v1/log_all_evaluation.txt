@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+iteration: 0 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.000
+total_accuracy: 0.000
+--------------------------------------------------------------------------------
+iteration: 0 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.000
+total_accuracy: 0.000
+--------------------------------------------------------------------------------
+iteration: 5000 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.708
+total_accuracy: 0.708
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+iteration: 10000 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.747
+total_accuracy: 0.747
+--------------------------------------------------------------------------------
+iteration: 15000 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.792
+total_accuracy: 0.792
+--------------------------------------------------------------------------------
+iteration: 20000 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.814
+total_accuracy: 0.814
+--------------------------------------------------------------------------------
+iteration: 25000 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.823
+total_accuracy: 0.823
+--------------------------------------------------------------------------------
+iteration: 29599 
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.833
+total_accuracy: 0.833

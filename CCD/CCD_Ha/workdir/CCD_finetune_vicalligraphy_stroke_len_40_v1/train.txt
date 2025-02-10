@@ -1,0 +1,1575 @@
+ModelConfig(
+	(0): arch = vit_base
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = True
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = True
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 256
+	(21): dataset_test_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/']
+	(22): dataset_train_batch_size = 42
+	(23): dataset_train_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 42
+	(28): dataset_valid_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 40
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = pretrained_model/Base_ARD_checkpoint.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 13
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 5000
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy-->12431'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy-->3108'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/-->3108'
+
+each epoch iteration: 296
+Read vision model from pretrained_model/Base_ARD_checkpoint.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 512, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=512, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 52925665
+
+Start training from scratch.
+iteration:0--> lr: 0.0--> train loss:5.440769195556641
+ModelConfig(
+	(0): arch = vit_base
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = True
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = True
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 256
+	(21): dataset_test_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/']
+	(22): dataset_train_batch_size = 42
+	(23): dataset_train_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 42
+	(28): dataset_valid_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 40
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(48): lr = 0.0005
+	(49): min_lr = 1e-06
+	(50): model_checkpoint = pretrained_model/Base_ARD_checkpoint.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 13
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 5000
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy-->12431'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy-->3108'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/-->3108'
+
+each epoch iteration: 296
+Read vision model from pretrained_model/Base_ARD_checkpoint.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 512, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=512, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 52925665
+
+Start training from scratch.
+iteration:0--> lr: 0.0--> train loss:5.550174236297607
+iteration:5000--> lr: 0.000468940291174579--> train loss:0.23271119594573975
+ModelConfig(
+	(0): arch = vit_base
+	(1): clip_grad = None
+	(2): dataset_augmentation_severity = 0
+	(3): dataset_case_sensitive = True
+	(4): dataset_charset_path = data/charset_36.txt
+	(5): dataset_charset_type = DICTVI
+	(6): dataset_data_aug = True
+	(7): dataset_eval_case_sensitive = True
+	(8): dataset_filter_single_punctuation = False
+	(9): dataset_image_height = 32
+	(10): dataset_image_width = 128
+	(11): dataset_mask = False
+	(12): dataset_max_length = 25
+	(13): dataset_multiscales = False
+	(14): dataset_num_workers = 8
+	(15): dataset_pin_memory = True
+	(16): dataset_portion = 1.0
+	(17): dataset_scheme = supervised
+	(18): dataset_smooth_factor = 0.1
+	(19): dataset_smooth_label = False
+	(20): dataset_test_batch_size = 256
+	(21): dataset_test_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/']
+	(22): dataset_train_batch_size = 42
+	(23): dataset_train_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy']
+	(24): dataset_train_weights = None
+	(25): dataset_type = ST
+	(26): dataset_use_sm = False
+	(27): dataset_valid_batch_size = 42
+	(28): dataset_valid_roots = ['/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy']
+	(29): decoder_d_embedding = 512
+	(30): decoder_d_inner = 256
+	(31): decoder_d_k = 64
+	(32): decoder_d_model = 512
+	(33): decoder_d_v = 64
+	(34): decoder_max_seq_len = 40
+	(35): decoder_n_head = 8
+	(36): decoder_n_layers = 6
+	(37): decoder_num_classes = 226
+	(38): decoder_padding_idx = 225
+	(39): decoder_start_idx = 224
+	(40): decoder_type = NRTRDecoder
+	(41): drop_path_rate = 0.1
+	(42): global_debug = False
+	(43): global_name = CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(44): global_phase = train
+	(45): global_seed = None
+	(46): global_stage = train-supervised
+	(47): global_workdir = workdir/CCD_finetune_vicalligraphy_stroke_len_40_v1
+	(48): lr = 0.0005
+	(49): min_lr = 1e-07
+	(50): model_checkpoint = pretrained_model/Base_ARD_checkpoint.pth
+	(51): model_name = semimtr.modules.model_abinet.ABINetModel
+	(52): model_strict = True
+	(53): mp_num = 4
+	(54): num_workers = 13
+	(55): optimizer = adamw
+	(56): optimizer_args_betas = (0.9, 0.999)
+	(57): optimizer_bn_wd = False
+	(58): optimizer_clip_grad = 20
+	(59): optimizer_lr = 0.0001
+	(60): optimizer_scheduler_gamma = 0.1
+	(61): optimizer_scheduler_periods = [3, 1, 1]
+	(62): optimizer_true_wd = False
+	(63): optimizer_type = Adam
+	(64): optimizer_wd = 0.0
+	(65): out_dim = 65536
+	(66): output_dir = ./saved_models/
+	(67): patch_size = 4
+	(68): seed = 0
+	(69): training_epochs = 100
+	(70): training_eval_iters = 5000
+	(71): training_hist_iters = 10000000
+	(72): training_save_iters = 5000
+	(73): training_show_iters = 5000
+	(74): training_start_iters = 0
+	(75): training_stats_iters = 1000
+	(76): warmup_epochs = 1
+	(77): weight_decay = 0.05
+)
+Construct dataset.
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/training/calligraphy-->12431'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy-->3108'
+
+'current_dataset_path:/mlcv2/WorkingSpace/Personal/hamh/Ha/Data/Vicalligraphy/ViCalligraphy/evaluation/calligraphy/-->3108'
+
+each epoch iteration: 296
+Read vision model from pretrained_model/Base_ARD_checkpoint.pth.
+DataParallel(
+  (module): DINO_Finetune(
+    (backbone): VisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 512, kernel_size=(4, 4), stride=(4, 4))
+      )
+      (pos_drop): Dropout(p=0.0, inplace=False)
+      (blocks): ModuleList(
+        (0): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (6): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (8): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (10): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): Block(
+          (norm1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (attn): Attention(
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=2048, out_features=512, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+      (norm_seg): Sequential(
+        (0): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (1): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+        (2): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+    (encoder): Mlp(
+      (fc1): Linear(in_features=512, out_features=512, bias=True)
+      (act): GELU()
+      (fc2): Linear(in_features=512, out_features=512, bias=True)
+      (drop): Dropout(p=0.1, inplace=False)
+    )
+    (decoder): NRTRDecoder(
+      (trg_word_emb): Embedding(226, 512, padding_idx=225)
+      (position_enc): PositionalEncoding(
+        (dropout): Dropout(p=0, inplace=False)
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layer_stack): ModuleList(
+        (0): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): TFDecoderLayer(
+          (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          (self_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (enc_attn): MultiHeadAttention(
+            (linear_q): Linear(in_features=512, out_features=512, bias=False)
+            (linear_k): Linear(in_features=512, out_features=512, bias=False)
+            (linear_v): Linear(in_features=512, out_features=512, bias=False)
+            (attention): ScaledDotProductAttention(
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (fc): Linear(in_features=512, out_features=512, bias=False)
+            (proj_drop): Dropout(p=0.1, inplace=False)
+          )
+          (mlp): PositionwiseFeedForward(
+            (w_1): Linear(in_features=512, out_features=256, bias=True)
+            (w_2): Linear(in_features=256, out_features=512, bias=True)
+            (act): GELU()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (layer_norm): LayerNorm((512,), eps=1e-06, elementwise_affine=True)
+      (classifier): Linear(in_features=512, out_features=225, bias=True)
+    )
+    (loss): TFLoss(
+      (loss_ce): CrossEntropyLoss()
+    )
+  )
+)
+
+Trainable params num: 52925665
+
+Start training from scratch.
+iteration:0--> lr: 0.0--> train loss:5.536825180053711
+iteration:10000--> lr: 0.00037672958412962717--> train loss:0.10476711392402649
+iteration:15000--> lr: 0.00024910910415062586--> train loss:0.06907865405082703
+iteration:20000--> lr: 0.00012187879662240796--> train loss:0.042412418872117996
+iteration:25000--> lr: 3.0729156217577906e-05--> train loss:0.025420552119612694
+eval model at last

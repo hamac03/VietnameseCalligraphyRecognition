@@ -1,0 +1,12 @@
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.2747747747747748 --> CER: 0.5459045484262632
+total_accuracy: 0.2747747747747748
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.0 --> CER: 0.9998175557025246
+total_accuracy: 0.0
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.0 --> CER: 0.9998175557025246
+total_accuracy: 0.0
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.0 --> CER: 0.9998175557025246
+total_accuracy: 0.0
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.0 --> CER: 0.9998175557025246
+total_accuracy: 0.0
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.8346203346203346 --> CER: 0.09167825948140207
+total_accuracy: 0.8346203346203346

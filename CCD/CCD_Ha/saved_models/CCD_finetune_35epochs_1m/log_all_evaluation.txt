@@ -1,0 +1,93 @@
+--------------------------------------------------------------------------------
+iteration: 0 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.000
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.000
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.000
+total_accuracy: 0.000
+--------------------------------------------------------------------------------
+iteration: 0 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.000
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.000
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.000
+total_accuracy: 0.000
+--------------------------------------------------------------------------------
+iteration: 50000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.898
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.824
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.126
+total_accuracy: 0.879
+--------------------------------------------------------------------------------
+iteration: 100000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.907
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.846
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.142
+total_accuracy: 0.890
+--------------------------------------------------------------------------------
+iteration: 150000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.922
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.865
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.153
+total_accuracy: 0.906
+--------------------------------------------------------------------------------
+iteration: 150000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.922
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.865
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.154
+total_accuracy: 0.906
+--------------------------------------------------------------------------------
+iteration: 150000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.922
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.866
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.153
+total_accuracy: 0.905
+--------------------------------------------------------------------------------
+iteration: 200000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.929
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.885
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.173
+total_accuracy: 0.914
+--------------------------------------------------------------------------------
+iteration: 250000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.938
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.893
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.174
+total_accuracy: 0.922
+--------------------------------------------------------------------------------
+iteration: 250000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.935
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.894
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.147
+total_accuracy: 0.920
+--------------------------------------------------------------------------------
+iteration: 300000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.948
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.915
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.194
+total_accuracy: 0.934
+--------------------------------------------------------------------------------
+iteration: 350000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.957
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.923
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.192
+total_accuracy: 0.943
+--------------------------------------------------------------------------------
+iteration: 400000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.965
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.932
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.224
+total_accuracy: 0.951
+--------------------------------------------------------------------------------
+iteration: 450000 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.969
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.937
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.228
+total_accuracy: 0.955
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+iteration: 474144 
+dataset: 1M --> word_num: 200000.0 --> accuracy: 0.969
+dataset: HANDS-VNOnDB2018 --> word_num: 25115.0 --> accuracy: 0.938
+dataset: ViCalligraphy --> word_num: 3108.0 --> accuracy: 0.232
+total_accuracy: 0.956
+--------------------------------------------------------------------------------
