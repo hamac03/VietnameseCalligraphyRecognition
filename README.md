@@ -65,6 +65,11 @@ conda install pytorch torchvision torchaudio cpuonly -c pytorch
 ```
 After installing dependencies, the following two installation methods are available. Either one can be chosen.
 
+Or our conda env:
+```bash
+conda env create -f OpenOCR/environment.yml
+```
+
 **Usage**:
 
 ```bash
@@ -87,6 +92,10 @@ conda install pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit
 pip install -r CCD/CCD_Ha/requirement.txt
 ```
 
+Or using conda env:
+```bash
+conda env create -f CCD/environment.yml
+```
 ## Fine-tuning
 The difference between character-based and stroke-based models lies only in the inference step. Therefore, during fine-tuning, we follow the training approach of the character-based model.
 ```bash
